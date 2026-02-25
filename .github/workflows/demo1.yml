@@ -3,6 +3,13 @@ on:
   pull_request:
     types: [opened, edited]
   workflow_dispatch:
+  push:
+    branches:
+      - main
+      - 'dev-*' # single * allows for any characters but a slash dev-new-feature
+      - 'feat/**' # double ** allows for slashes and characters e.g. feat/new/color
+    paths-ignore:
+      - 'github/workflows/*'
 jobs:
   deploy:
     runs-on: ubuntu-latest
